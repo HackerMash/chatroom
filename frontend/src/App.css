@@ -1,38 +1,128 @@
-.App {
-    text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar styles */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f5f9;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
-.App-link {
-    color: #61dafb;
+/* Smooth animations */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Chat message animations */
+.chat-message {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Music player glow effect */
+.music-playing {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+/* Background gradient animation */
+.bg-gradient-animated {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Loading spinner */
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #8b5cf6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Room hover effects */
+.room-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Message bubble styles */
+.message-bubble {
+  position: relative;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.message-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right-color: #f3f4f6;
+  border-bottom: 0;
+  border-left: 0;
+  margin-bottom: -8px;
+}
+
+.message-bubble.own::before {
+  right: -8px;
+  left: auto;
+  border-right-color: transparent;
+  border-left-color: #8b5cf6;
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .chat-container {
+    height: calc(100vh - 120px);
+  }
+  
+  .message-input {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
 }
