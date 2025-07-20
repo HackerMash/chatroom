@@ -203,12 +203,10 @@ metadata:
 test_plan:
   current_focus:
     - "WebSocket Real-time Chat System"
-    - "Chat Room Management API"
-    - "Message History API"
-    - "WebSocket Client Integration"
-  stuck_tasks: []
-  test_all: true
-  test_priority: "high_first"
+  stuck_tasks:
+    - "WebSocket Real-time Chat System"
+  test_all: false
+  test_priority: "stuck_first"
 
 agent_communication:
   - agent: "main"
