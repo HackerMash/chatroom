@@ -107,37 +107,46 @@ user_problem_statement: "Build a chatroom for a specific niche, like minded peop
 backend:
   - task: "WebSocket Real-time Chat System"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented WebSocket chat system with connection manager, room support, and message broadcasting"
+      - working: false
+        agent: "testing"
+        comment: "WebSocket endpoint code is correctly implemented but connections fail with timeout during handshake. This appears to be a Kubernetes ingress configuration issue preventing WebSocket protocol upgrade. The endpoint is defined at /ws/{room_id}/{user_id}/{username} but cannot be reached externally through wss://. Backend server is running correctly and REST APIs work fine."
   - task: "Chat Room Management API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Created REST APIs for room creation, listing, and default room initialization"
+      - working: true
+        agent: "testing"
+        comment: "All room management APIs working perfectly: GET /api/rooms returns proper room list with user counts, POST /api/init-default-rooms successfully creates 4 themed rooms (General Lofi, Study & Work, Creative Minds, Late Night Vibes), POST /api/rooms creates custom rooms. Database persistence confirmed."
   - task: "Message History API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented message retrieval API with timestamp sorting and limits"
+      - working: true
+        agent: "testing"
+        comment: "Message history API GET /api/rooms/{room_id}/messages working correctly. Returns empty array for new rooms, properly handles room_id parameter, and database queries execute successfully. MongoDB connection and chat_messages collection confirmed functional."
 
 frontend:
   - task: "Chat Room Interface"
