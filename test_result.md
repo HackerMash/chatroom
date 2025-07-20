@@ -204,3 +204,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Implemented complete lofi chatroom application with WebSocket real-time chat, multiple themed rooms, background music player, and beautiful UI. Need backend testing first for WebSocket endpoints, room APIs, and message persistence. Frontend testing should follow to verify real-time chat functionality and music integration."
+  - agent: "testing"
+    message: "Backend testing completed. REST API endpoints are fully functional - all CRUD operations for rooms, message history, and default room initialization work perfectly. Database connectivity and data persistence confirmed. However, WebSocket connections are failing due to timeout during handshake, likely a Kubernetes ingress configuration issue preventing WebSocket protocol upgrade. The WebSocket endpoint code appears correct but cannot be reached externally."
